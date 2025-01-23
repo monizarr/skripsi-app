@@ -1,6 +1,4 @@
 <script lang="ts">
-import { defineProps } from 'vue';
-import { withDefaults } from '@vueuse/core';
 export default {
     props: {
         color: {

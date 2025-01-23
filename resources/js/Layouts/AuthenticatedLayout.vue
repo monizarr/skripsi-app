@@ -21,17 +21,24 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
-                                <Link :href="route('dashboard')">
                                 <img src="../../images/logo/uin.png" alt="Logo"
                                     class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                                </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
+                                <template v-if="route().current('admin.dashboard')">
+                                    <NavLink :href="route('admin.dashboard')"
+                                        :active="route().current('admin.dashboard')">
+                                        Dashboard
+                                    </NavLink>
+                                </template>
+                                <template v-else>
+                                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                        Dashboard
+                                    </NavLink>
+                                </template>
+
                             </div>
                         </div>
 
@@ -40,7 +47,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="relative ms-3 flex  items-center">
                                 <div class="relative mr-8">
                                     <div
-                                        class="absolute -top-2 -right-2 bg-primary-300 rounded-full text-xs text-white font-semibold px-1">
+                                        class="absolute -top-2 -right-2 bg-prm-300 rounded-full text-xs text-white font-semibold px-1">
                                         2
                                     </div>
                                     <BellIcon class="h-6 w-6 text-gray-400 dark:text-gray-500" />
@@ -142,7 +149,7 @@ const showingNavigationDropdown = ref(false);
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="relative">
                 <slot />
             </main>
         </div>
